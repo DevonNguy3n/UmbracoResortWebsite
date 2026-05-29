@@ -1,10 +1,10 @@
-# 🏖️ Boma Resort Nha Trang - Umbraco CMS Website
+# Boma Resort Nha Trang - Umbraco CMS Website
 
-Chào mừng bạn đến với dự án website **Boma Resort Nha Trang** - khu nghỉ dưỡng 5 sao sang trọng tại Nha Trang, Việt Nam. Website được xây dựng và phát triển trên nền tảng **Umbraco CMS** và **.NET 10.0** hiện đại, kết hợp với cơ sở dữ liệu SQLite tối ưu để đem lại trải nghiệm mượt mà nhất.
+Dự án website **Boma Resort Nha Trang** - khu nghỉ dưỡng 5 sao sang trọng tại Nha Trang, Việt Nam. Website được xây dựng và phát triển trên nền tảng **Umbraco CMS** và **.NET 10.0** hiện đại, kết hợp với cơ sở dữ liệu SQLite tối ưu để đem lại trải nghiệm mượt mà nhất.
 
 ---
 
-## 🌟 Tính Năng Nổi Bật (Key Features)
+## Tính Năng Nổi Bật (Key Features)
 
 - **Giao diện Sang trọng & Hiện đại**: Thiết kế theo tiêu chuẩn Resort 5 sao sử dụng **TailwindCSS** với khả năng hiển thị tương thích hoàn hảo trên mọi thiết bị di động (Responsive).
 - **Hệ thống Slider Động trên Trang Chủ**: Slider chuyển cảnh hình ảnh tự động sau 5 giây (Autoplay) và hỗ trợ tương tác trực quan bằng các nút điều hướng và chấm tròn định vị.
@@ -18,7 +18,7 @@ Chào mừng bạn đến với dự án website **Boma Resort Nha Trang** - khu
 
 ---
 
-## 🛠️ Công Nghệ Sử Dụng (Tech Stack)
+## Tech Stack
 
 - **Backend**: .NET 10.0, ASP.NET Core MVC.
 - **CMS**: Umbraco CMS v13/v14.
@@ -29,7 +29,7 @@ Chào mừng bạn đến với dự án website **Boma Resort Nha Trang** - khu
 
 ---
 
-## 🚀 Hướng Dẫn Khởi Chạy Dự Án Cục Bộ (Getting Started)
+## Hướng Dẫn Khởi Chạy Dự Án Cục Bộ (Getting Started)
 
 Để chạy dự án trên máy tính của bạn, vui lòng đảm bảo đã cài đặt **.NET 10.0 SDK**.
 
@@ -56,7 +56,7 @@ dotnet run
 
 ---
 
-## 📁 Cấu Trúc Mã Nguồn Chính (Directory Structure)
+## Cấu Trúc Mã Nguồn Chính (Directory Structure)
 
 ```text
 c:\Users\ACER\Umbraco\
@@ -81,7 +81,7 @@ c:\Users\ACER\Umbraco\
 
 ---
 
-## 🔒 Quản Lý Cơ Sở Dữ Liệu SQLite
+## Quản Lý Cơ Sở Dữ Liệu SQLite
 
 Toàn bộ dữ liệu của biểu mẫu gửi về sẽ được tự động lưu trữ trong tệp tin:
 `Umbraco/umbraco/Data/Umbraco.sqlite.db`
@@ -90,7 +90,6 @@ Các bảng dữ liệu tự động khởi tạo bao gồm:
 - **`CustomBookings`**: Lưu trữ đơn đặt phòng.
 - **`CustomContacts`**: Lưu trữ thông tin liên hệ của khách hàng.
 
-Bạn có thể sử dụng các công cụ như **DB Browser for SQLite** hoặc extension **SQLite Viewer** trong VS Code để kiểm tra và quản lý dữ liệu lưu trữ trực quan.
+Có thể sử dụng các công cụ như **DB Browser for SQLite** hoặc extension **SQLite Viewer** trong VS Code để kiểm tra và quản lý dữ liệu lưu trữ trực quan.
 
----
-✍️ *Dự án được hoàn thiện và đóng gói an toàn bằng Git cục bộ.*
+

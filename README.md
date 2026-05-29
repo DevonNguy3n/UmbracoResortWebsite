@@ -1,6 +1,6 @@
 # 🏖️ Boma Resort Nha Trang - Umbraco CMS Website
 
-Chào mừng bạn đến với dự án website chính thức của **Boma Resort Nha Trang** - khu nghỉ dưỡng 5 sao sang trọng tại Nha Trang, Việt Nam. Website được xây dựng và phát triển trên nền tảng **Umbraco CMS** và **.NET 10.0** hiện đại, kết hợp với cơ sở dữ liệu SQLite tối ưu để đem lại trải nghiệm mượt mà nhất.
+Chào mừng bạn đến với dự án website **Boma Resort Nha Trang** - khu nghỉ dưỡng 5 sao sang trọng tại Nha Trang, Việt Nam. Website được xây dựng và phát triển trên nền tảng **Umbraco CMS** và **.NET 10.0** hiện đại, kết hợp với cơ sở dữ liệu SQLite tối ưu để đem lại trải nghiệm mượt mà nhất.
 
 ---
 

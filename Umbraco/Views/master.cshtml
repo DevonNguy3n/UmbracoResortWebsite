@@ -1,0 +1,55 @@
+@using Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models;
+@using Umbraco.Extensions;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent>
+@{
+    Layout = null;
+    var rootPage = Model.Root();
+    var logoMain = rootPage?.Value<Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent>("logoImg")?.Url();
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boma Resort Nha Trang - Resort 5 Sao Nha Trang</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style type="text/css"></style>
+</head>
+<body class="m-0 p-0 bg-white">
+    <header class="bg-black shadow-lg top-0 z-50">
+        <nav class="container mx-auto px-4 py-4 flex items-center justify-between">
+            <ul class="hidden md:flex flex-1 justify-end gap-x-20">
+                <li><a href="/roomlistpage/" class="text-[15px] text-white font-bold hover:text-yellow-200 transition-colors">DANH SÁCH PHÒNG</a></li>
+                <li><a href="/experiencepage/" class="text-[15px] text-white font-bold hover:text-yellow-200 transition-colors">TRẢI NGHIỆM</a></li>
+                <li><a href="/restaurantpage/" class="text-[15px] text-white font-bold hover:text-yellow-200 transition-colors">NHÀ HÀNG</a></li>
+            </ul>
+
+            <section class="mx-10">
+                <a href="/homepage/">
+                    <img src="@logoMain" class="h-10 md:h-12 w-auto object-contain opacity-80" alt="logo">
+                </a>
+            </section>
+
+            <ul class="hidden md:flex flex-1 justify-start gap-x-20">
+                <li><a href="/weddingpage/" class="text-[15px] text-white font-bold hover:text-yellow-200 transition-colors">WEDDING</a></li>
+                <li><a href="/spapage/" class="text-[15px] text-white font-bold hover:text-yellow-200 transition-colors">SPA</a></li>
+                <li><a href="/contactpage/" class="text-[15px] text-white font-bold hover:text-yellow-200 transition-colors">LIÊN HỆ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="min-h-screen">
+        @RenderBody()
+    </main>
+
+    <footer class="bg-slate-950 text-white py-12 px-10 text-center border-t border-slate-800">
+        <div class="max-w-4xl mx-auto space-y-4">
+            <p class="text-xs tracking-widest opacity-70 uppercase">&copy; 2026 BOMA Resort - Designed by Nguyen</p>
+            <div>
+                <span class="font-light">Đường Phạm Văn Đồng, Nha Trang, Khánh Hoà, Việt Nam</span>
+            </div>
+        </div>
+    </footer >
+</body>
+</html>

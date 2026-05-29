@@ -1,0 +1,140 @@
+@using Umbraco.Cms.Web.Common.PublishedModels;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.SpaPage>
+@{
+    Layout = "master.cshtml";
+    var spaBanner = Model.Value<Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent>("spaBanner")?.Url();
+    var serviceImg = Model.Value<Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent>("serviceImg")?.Url();
+    var step1Img = Model.Value<Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent>("step1Img")?.Url();
+    var step2Img = Model.Value<Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent>("step2Img")?.Url();
+    var step3Img = Model.Value<Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent>("step3Img")?.Url();
+    var step4Img = Model.Value<Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent>("step4Img")?.Url();
+    var step5Img = Model.Value<Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent>("step5Img")?.Url();
+}
+
+<section style="position: relative; width: 100%; height: 500px; overflow: hidden; background-color: #000;">
+    @if (!string.IsNullOrEmpty(spaBanner))
+    {
+        <img src="@spaBanner" alt="Sensory Spa Banner" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.7;" />
+    }
+    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: #fff; width: 100%; padding: 0 20px;">
+        <h1 style="font-size: 48px; margin: 0; text-transform: uppercase; letter-spacing: 4px; font-family: serif;">
+            @Model.Value("spaTitle")
+        </h1>
+        <p style="font-size: 14px; margin-top: 10px; text-transform: uppercase; letter-spacing: 2px;">Trang chủ » Spa</p>
+    </div>
+</section>
+
+<section style="max-width: 1200px; margin: 80px auto; padding: 0 20px; display: flex; flex-wrap: wrap; gap: 50px; align-items: center;">
+    <div style="flex: 1; min-width: 300px;">
+        <div style="font-size: 16px; line-height: 1.8; color: #333;">
+            @Model.Value("spaDescription")
+        </div>
+        <div style="margin-top: 30px;">
+            <a href="https://bomanhatrang.com/wp-content/uploads/2026/01/spa_menu_2026.pdf" style="display: inline-block; background-color: #b45309; color: #fff; padding: 12px 30px; text-decoration: none; text-transform: uppercase; font-size: 14px; letter-spacing: 1px; transition: 0.3s;">
+                Xem Menu Spa
+            </a>
+        </div>
+    </div>
+    <div style="flex: 1; min-width: 300px; height: 450px; overflow: hidden; border-radius: 4px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+        @if (!string.IsNullOrEmpty(serviceImg))
+        {
+            <img src="@serviceImg" alt="Dịch vụ của Boma" style="width: 100%; height: 100%; object-fit: cover;" />
+        }
+    </div>
+</section>
+
+<section style="background-color: #f9f8f6; padding: 80px 0;">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+        <h2 style="font-size: 32px; font-family: serif; text-align: center; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 50px; color: #1a1a1a;">
+            Các phương pháp trị liệu
+        </h2>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px;">
+            <div style="background: #fff; border-radius: 4px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05); display: flex; flex-direction: column;">
+                <div style="height: 250px; overflow: hidden;">
+                    @if (!string.IsNullOrEmpty(step1Img))
+                    {
+                        <img src="@step1Img" alt="Khứu giác" style="width: 100%; height: 100%; object-fit: cover;" />
+                    }
+                </div>
+                <div style="padding: 25px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div style="font-size: 15px; line-height: 1.6; color: #4a4a4a;">
+                        @Model.Value("step1")
+                    </div>
+                    <a href="/contactpage" style="color: #b45309; text-decoration: none; font-weight: bold; font-size: 14px; margin-top: 20px; display: inline-block;">
+                        Liên hệ &rarr;
+                    </a>
+                </div>
+            </div>
+
+            <div style="background: #fff; border-radius: 4px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05); display: flex; flex-direction: column;">
+                <div style="height: 250px; overflow: hidden;">
+                    @if (!string.IsNullOrEmpty(step2Img))
+                    {
+                        <img src="@step2Img" alt="Thính giác" style="width: 100%; height: 100%; object-fit: cover;" />
+                    }
+                </div>
+                <div style="padding: 25px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div style="font-size: 15px; line-height: 1.6; color: #4a4a4a;">
+                        @Model.Value("step2")
+                    </div>
+                    <a href="/contactpage" style="color: #b45309; text-decoration: none; font-weight: bold; font-size: 14px; margin-top: 20px; display: inline-block;">
+                        Liên hệ &rarr;
+                    </a>
+                </div>
+            </div>
+
+            <div style="background: #fff; border-radius: 4px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05); display: flex; flex-direction: column;">
+                <div style="height: 250px; overflow: hidden;">
+                    @if (!string.IsNullOrEmpty(step3Img))
+                    {
+                        <img src="@step3Img" alt="Thị giác" style="width: 100%; height: 100%; object-fit: cover;" />
+                    }
+                </div>
+                <div style="padding: 25px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div style="font-size: 15px; line-height: 1.6; color: #4a4a4a;">
+                        @Model.Value("step3")
+                    </div>
+                    <a href="/contactpage" style="color: #b45309; text-decoration: none; font-weight: bold; font-size: 14px; margin-top: 20px; display: inline-block;">
+                        Liên hệ &rarr;
+                    </a>
+                </div>
+            </div>
+
+            <div style="background: #fff; border-radius: 4px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05); display: flex; flex-direction: column;">
+                <div style="height: 250px; overflow: hidden;">
+                    @if (!string.IsNullOrEmpty(step4Img))
+                    {
+                        <img src="@step4Img" alt="Vị giác" style="width: 100%; height: 100%; object-fit: cover;" />
+                    }
+                </div>
+                <div style="padding: 25px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div style="font-size: 15px; line-height: 1.6; color: #4a4a4a;">
+                        @Model.Value("step4")
+                    </div>
+                    <a href="/contactpage" style="color: #b45309; text-decoration: none; font-weight: bold; font-size: 14px; margin-top: 20px; display: inline-block;">
+                        Liên hệ &rarr;
+                    </a>
+                </div>
+            </div>
+
+            <div style="background: #fff; border-radius: 4px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05); display: flex; flex-direction: column;">
+                <div style="height: 250px; overflow: hidden;">
+                    @if (!string.IsNullOrEmpty(step5Img))
+                    {
+                        <img src="@step5Img" alt="Cảm giác" style="width: 100%; height: 100%; object-fit: cover;" />
+                    }
+                </div>
+                <div style="padding: 25px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div style="font-size: 15px; line-height: 1.6; color: #4a4a4a;">
+                        @Model.Value("step5")
+                    </div>
+                    <a href="/contactpage" style="color: #b45309; text-decoration: none; font-weight: bold; font-size: 14px; margin-top: 20px; display: inline-block;">
+                        Liên hệ &rarr;
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

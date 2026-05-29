@@ -1,0 +1,192 @@
+@using Umbraco.Cms.Web.Common.PublishedModels;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.RoomList>
+@{
+    Layout = "master.cshtml";
+    var rooms = Model.Children().Where(x => x.IsVisible());
+    var bannerMain = Model.Value<Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent>("bannerImg")?.Url();
+    var sunset = Model.Value<Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent>("sunsetImg")?.Url();
+    var bayview = Model.Value<Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent>("bayviewImg")?.Url();
+    var plustwosuit = Model.Value<Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent>("plus2suitImg")?.Url();
+    var rocksuite = Model.Value<Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent>("rocksuiteImg")?.Url();
+    var chillout = Model.Value<Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent>("chilloutImg")?.Url();
+    var oceanpad = Model.Value<Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent>("oceanpadImg")?.Url();
+    var awesome = Model.Value<Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent>("awesomeImg")?.Url();
+    var offer1 = Model.Value<Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent>("bomagetawayImg")?.Url();
+    var offer2 = Model.Value<Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent>("staylongerImg")?.Url();
+    var offer3 = Model.Value<Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent>("daypassImg")?.Url();
+    var cookingclass = Model.Value<Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent>("cookingclassImg")?.Url();
+    var tobook = Model.Value<Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent>("tobookImg")?.Url();
+    var carservice = Model.Value<Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent>("carserviceImg")?.Url();
+}
+
+<div class="relative w-full h-[60vh] md:h-[85vh] overflow-hidden">
+    <img src="@bannerMain" class="w-full h-full object-cover" alt="Danh sách phòng Banner">
+    <div class="absolute inset-0 bg-black/20 flex flex-col items-center justify-center text-white text-center px-4">
+        <h1 class="text-4xl md:text-6xl font-light tracking-widest uppercase mb-4 font-sans">
+            @Model.Value("roomHero")
+        </h1>
+        <p class="text-xs md:text-sm tracking-widest uppercase font-light">
+            Trang chủ » <span class="opacity-70">Danh sách phòng</span>
+        </p>
+    </div>
+</div>
+
+<section class="max-w-4xl mx-auto px-6 py-24 text-center">
+    <div class="text-xs tracking-[0.2em] uppercase text-amber-700 font-medium mb-3">Welcome to Boma</div>
+    @if (Model.HasValue("aboutBoma"))
+    {
+        <div class="prose prose-slate max-w-none mb-6 text-slate-800 font-serif font-light text-3xl tracking-widest uppercase">
+            @Html.Raw(Model.Value("aboutBoma"))
+        </div>
+    }
+    @if (Model.HasValue("aboutBoma2"))
+    {
+        <div class="text-base font-light text-slate-600 leading-loose font-sans space-y-4 text-justify md:text-center">
+            @Html.Raw(Model.Value("aboutBoma2"))
+        </div>
+    }
+</section>
+
+<div class="w-full bg-[#f4f3ee] py-20 mb-20">
+    <div class="max-w-5xl mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-light text-slate-800 uppercase tracking-[0.2em] font-sans mb-2">
+                @Model.Value("roomChose")
+            </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 w-full">
+            @foreach (var room in rooms)
+            {
+                var rImage = room.Value<IPublishedContent>("roomImage")?.Url() ?? "@bannerMain";
+                <a href="@room.Url()" class="flex flex-col bg-white rounded-sm overflow-hidden border border-slate-100 shadow-sm hover:shadow-md transition-all duration-300 group">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="@rImage" onerror="this.src='@bannerMain'" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="@room.Name" />
+                    </div>
+                    <div class="p-6 text-slate-600 text-sm leading-relaxed font-sans flex flex-col justify-between flex-grow">
+                        <div>
+                            <h3 class="text-lg font-medium text-slate-800 uppercase tracking-wider mb-2 group-hover:text-amber-700 transition-colors">
+                                @room.Name
+                            </h3>
+                            <div class="line-clamp-3 text-slate-500 mb-4">
+                                @Html.Raw(room.Value("roomDescription"))
+                            </div>
+                        </div>
+                        <div class="text-xs uppercase tracking-widest text-amber-700 font-medium group-hover:underline mt-auto">
+                            Khám phá ngay →
+                        </div>
+                    </div>
+                </a>
+            }
+        </div>
+    </div>
+</div>
+
+<section class="max-w-7xl mx-auto px-6 py-24 border-t border-slate-100 bg-slate-50/40">
+    <div class="text-center mb-16">
+        <h2 class="text-3xl font-serif font-light tracking-[0.15em] text-slate-800 uppercase">
+            Ưu Đãi Đặc Biệt
+        </h2>
+        <div class="w-12 h-[1px] bg-amber-700 mx-auto mt-4"></div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        @if (Model.HasValue("bomaGetaway"))
+        {
+            <div class="flex flex-col bg-white rounded-sm border border-slate-100 shadow-sm p-6 group">
+                <div class="w-full h-52 overflow-hidden mb-4 relative rounded-sm">
+                    <img src="@offer1" alt="Boma Getaway" class="w-full h-full object-cover group-hover:scale-102 transition-transform" />
+                </div>
+                <h3 class="text-lg font-serif text-slate-800 uppercase tracking-wider mb-3 font-medium">
+                    Gói Boma Getaway
+                </h3>
+                <div class="text-sm font-light text-slate-600 leading-relaxed font-sans prose prose-sm">
+                    @Html.Raw(Model.Value("bomaGetaway"))
+                </div>
+            </div>
+        }
+
+        @if (Model.HasValue("stayLonger"))
+        {
+            <div class="flex flex-col bg-white rounded-sm border border-slate-100 shadow-sm p-6 group">
+                <div class="w-full h-52 overflow-hidden mb-4 relative rounded-sm">
+                    <img src="@offer2" alt="Stay Longer" class="w-full h-full object-cover group-hover:scale-102 transition-transform" />
+                </div>
+                <h3 class="text-lg font-serif text-slate-800 uppercase tracking-wider mb-3 font-medium">
+                    Gói Stay Longer
+                </h3>
+                <div class="text-sm font-light text-slate-600 leading-relaxed font-sans prose prose-sm">
+                    @Html.Raw(Model.Value("stayLonger"))
+                </div>
+            </div>
+        }
+
+        @if (Model.HasValue("cookingClass"))
+        {
+            <div class="flex flex-col bg-white rounded-sm border border-slate-100 shadow-sm p-6 group">
+                <div class="w-full h-52 overflow-hidden mb-4 relative rounded-sm">
+                    <img src="@cookingclass" alt="Cooking Class" class="w-full h-full object-cover group-hover:scale-102 transition-transform" />
+                </div>
+                <h3 class="text-lg font-serif text-slate-800 uppercase tracking-wider mb-3 font-medium">
+                    Lớp Học Nấu Ăn
+                </h3>
+                <div class="text-sm font-light text-slate-600 leading-relaxed font-sans prose prose-sm">
+                    @Html.Raw(Model.Value("cookingClass"))
+                </div>
+            </div>
+        }
+
+        @if (Model.HasValue("toBook"))
+        {
+            <div class="flex flex-col bg-white rounded-sm border border-slate-100 shadow-sm p-6 group">
+                <div class="w-full h-52 overflow-hidden mb-4 relative rounded-sm">
+                    <img src="@tobook" alt="Ưu Đãi Đặt Phòng Trực Tiếp" class="w-full h-full object-cover group-hover:scale-102 transition-transform" />
+                </div>
+                <h3 class="text-lg font-serif text-slate-800 uppercase tracking-wider mb-3 font-medium">
+                    Đặt Phòng Trực Tiếp
+                </h3>
+                <div class="text-sm font-light text-slate-600 leading-relaxed font-sans prose prose-sm">
+                    @Html.Raw(Model.Value("toBook"))
+                </div>
+            </div>
+        }
+
+        @if (Model.HasValue("dayPass"))
+        {
+            <div class="flex flex-col bg-white rounded-sm border border-slate-100 shadow-sm p-6 group">
+                <div class="w-full h-52 overflow-hidden mb-4 relative rounded-sm">
+                    <img src="@offer3" alt="Day Pass" class="w-full h-full object-cover group-hover:scale-102 transition-transform" />
+                </div>
+                <h3 class="text-lg font-serif text-slate-800 uppercase tracking-wider mb-3 font-medium">
+                    Thẻ Ngày Day Pass
+                </h3>
+                <div class="text-sm font-light text-slate-600 leading-relaxed font-sans prose prose-sm">
+                    @Html.Raw(Model.Value("dayPass"))
+                </div>
+            </div>
+        }
+
+        @if (Model.HasValue("carService"))
+        {
+            <div class="flex flex-col bg-white rounded-sm border border-slate-100 shadow-sm p-6 group">
+                <div class="w-full h-52 overflow-hidden mb-4 relative rounded-sm">
+                    <img src="@carservice" alt="Dịch vụ xe đón tiễn" class="w-full h-full object-cover group-hover:scale-102 transition-transform" />
+                </div>
+                <h3 class="text-lg font-serif text-slate-800 uppercase tracking-wider mb-3 font-medium">
+                    Dịch Vụ Xe Đón Tiễn
+                </h3>
+                <div class="text-sm font-light text-slate-600 leading-relaxed font-sans prose prose-sm max-w-none overflow-x-auto">
+                    @Html.Raw(Model.Value("carService"))
+                </div>
+            </div>
+        }
+    </div>
+</section>
+
+@if (Model.HasValue("bomaWait"))
+{
+    <div class="max-w-2xl mb-6 mx-auto text-sm font-light tracking-wide leading-loose opacity-90">
+        @Html.Raw(Model.Value("bomaWait"))
+    </div>
+}

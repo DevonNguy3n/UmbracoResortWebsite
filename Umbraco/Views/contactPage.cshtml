@@ -1,0 +1,77 @@
+@using Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Web.Website.Controllers
+@using Umbraco.Controllers
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Web.Common.PublishedModels.ContactPage>
+@{
+    Layout = "master.cshtml";
+}
+
+<div class="contact-container" style="max-width: 1200px; margin: 60px auto; padding: 0 20px; font-family: sans-serif; color: #333;">
+    <div class="contact-header" style="text-align: center; margin-bottom: 60px;">
+        <h1 style="font-size: 36px; font-family: serif; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px;">Liên hệ</h1>
+        <p style="font-size: 14px; color: #777; text-transform: uppercase; letter-spacing: 1px;">Trang chủ » Liên hệ</p>
+    </div>
+
+    <div class="contact-grid" style="display: flex; flex-wrap: wrap; gap: 60px;">
+        <div class="contact-info" style="flex: 1; min-width: 300px; line-height: 1.8;">
+            <div style="margin-bottom: 20px;">
+                <strong style="display: block; color: #b45309; text-transform: uppercase; font-size: 13px; letter-spacing: 1px;">Địa chỉ:</strong>
+                <div style="font-size: 15px;">@Model.Value("address")</div>
+            </div>
+            <div style="margin-bottom: 20px;">
+                <strong style="display: block; color: #b45309; text-transform: uppercase; font-size: 13px; letter-spacing: 1px;">Số điện thoại:</strong>
+                <div style="font-size: 15px;">@Model.Value("phoneNumber")</div>
+            </div>
+            <div style="margin-bottom: 20px;">
+                <strong style="display: block; color: #b45309; text-transform: uppercase; font-size: 13px; letter-spacing: 1px;">Email:</strong>
+                <div style="font-size: 15px;">@Model.Value("mail")</div>
+            </div>
+        </div>
+
+        <div class="contact-form-wrapper" style="flex: 1; min-width: 350px; background: #fdfcfb; padding: 40px; border: 1px solid #f1eeea; border-radius: 4px;">
+            @if (TempData["ContactStatus"] != null)
+            {
+                <div style="margin-bottom: 20px; padding: 10px; background: #fef2f2; border: 1px solid #fee2e2; color: #991b1b; font-size: 14px;">
+                    @TempData["ContactStatus"]
+                </div>
+            }
+
+            @using (Html.BeginUmbracoForm<FormSurfaceController>("HandleContact", FormMethod.Post))
+            {
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; font-size: 14px; font-weight: 500; margin-bottom: 5px;">Họ và tên <span style="color: red;">*</span></label>
+                    <input type="text" name="Name" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;" />
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; font-size: 14px; font-weight: 500; margin-bottom: 5px;">Địa chỉ Email <span style="color: red;">*</span></label>
+                    <input type="email" name="Email" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;" />
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; font-size: 14px; font-weight: 500; margin-bottom: 5px;">Số điện thoại</label>
+                    <input type="tel" name="Phone" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;" />
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; font-size: 14px; font-weight: 500; margin-bottom: 5px;">Dịch vụ bạn quan tâm</label>
+                    <select name="ServiceType" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; background: white;">
+                        <option value="Đặt phòng">Đặt phòng (Rooms & Pads)</option>
+                        <option value="Dịch vụ Spa">Dịch vụ Spa</option>
+                        <option value="Nhà hàng & Ẩm thực">Nhà hàng & Ẩm thực</option>
+                        <option value="Tiệc cưới & Sự kiện">Tiệc cưới & Sự kiện</option>
+                    </select>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; font-size: 14px; font-weight: 500; margin-bottom: 5px;">Tin nhắn của bạn</label>
+                    <textarea name="Message" rows="4" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;"></textarea>
+                </div>
+
+                <button type="submit" style="width: 100%; background: #b45309; color: white; border: none; padding: 12px; font-weight: 600; text-transform: uppercase; border-radius: 4px; cursor: pointer;">
+                    Gửi yêu cầu
+                </button>
+            }
+        </div>
+    </div>
+</div>

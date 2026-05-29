@@ -1,0 +1,214 @@
+@using Umbraco.Cms.Web.Common.PublishedModels;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+    Layout = "master.cshtml";
+    var bannerMain = Model.Value<Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent>("bannerImg")?.Url();
+    var smallLogo = Model.Value<Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent>("smallLogo")?.Url();
+    var restaurantImg = Model.Value<Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent>("restaurantImg")?.Url();
+    var spaImg = Model.Value<Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent>("spaImg")?.Url();
+    var act1 = Model.Value<Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent>("activity1")?.Url();
+    var act2 = Model.Value<Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent>("activity2")?.Url();
+    var act3 = Model.Value<Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent>("activity3")?.Url();
+    var act4 = Model.Value<Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent>("activity4")?.Url();
+}
+
+<div class="h-full w-full">
+    <img src="@bannerMain" class="w-full object-cover" alt="banner">
+</div>
+
+<div class="flex justify-center mb-6 mt-4">
+    <img src="@smallLogo" class="w-48" alt="banner">
+</div>
+
+<div class="tracking-[0.2em] text-center max-w-4xl mx-auto px-4 mb-6 uppercase antialiased">
+    <h2 class="text-2xl font-light text-slate-800 mb-4 font-sans">@Model.Value("introTitle")</h2>
+    <div class="text-gray-500 font-light text-sm normal-case leading-relaxed [&_p]:font-sans [&_p]:text-gray-500 [&_p]:text-sm [&_p]:font-light">@Model.Value("introDescription")</div>
+</div>
+
+<div class="flex justify-center mt-8 mb-8">
+    <a href="/roomlistpage/" class="group relative inline-flex items-center gap-3 font-sans uppercase pb-2 tracking-[0.2em] text-xs font-light text-slate-800 antialiased">
+        <span>ĐẶT PHÒNG NGAY</span>
+        <span class="absolute bottom-0 w-0 h-[1px] bg-slate-800 transition-all duration-300 group-hover:w-full"></span>
+    </a>
+</div>
+
+<div class="flex justify-center mb-12 mt-4 px-4 w-full">
+    <div class="w-full max-w-5xl p-1 bg-white relative group overflow-hidden">
+        <div id="slider-track" class="flex w-full h-[450px] transition-transform duration-500 ease-out">
+            <div class="w-full h-full shrink-0">
+                <img src="/media/04oeffga/bomaday.jpg" class="w-full h-full object-cover" alt="slider 1">
+            </div>
+            <div class="w-full h-full shrink-0">
+                <img src="/media/emlhnd3p/lobby.webp" class="w-full h-full object-cover" alt="slider 2">
+            </div>
+            <div class="w-full h-full shrink-0">
+                <img src="/media/5f2h4hwi/beach.webp" class="w-full h-full object-cover" alt="slider 3">
+            </div>
+            <div class="w-full h-full shrink-0">
+                <img src="/media/u5zhtx5u/bomabanner.jpg" class="w-full h-full object-cover" alt="slider 4">
+            </div>
+        </div>
+
+        <button id="prev-btn" class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/60 text-white w-10 h-10 rounded-full flex items-center justify-center group-hover:opacity-100 transition-opacity duration-300 z-10 text-lg">
+            &#10094;
+        </button>
+        <button id="next-btn" class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/60 text-white w-10 h-10 rounded-full flex items-center justify-center group-hover:opacity-100 transition-opacity duration-300 z-10 text-lg">
+            &#10095;
+        </button>
+
+        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-10">
+            <button class="dot w-2 h-2 rounded-full bg-white/50 bg-white" onclick="goToSlide(0)"></button>
+            <button class="dot w-2 h-2 rounded-full bg-white/50" onclick="goToSlide(1)"></button>
+            <button class="dot w-2 h-2 rounded-full bg-white/50" onclick="goToSlide(2)"></button>
+            <button class="dot w-2 h-2 rounded-full bg-white/50" onclick="goToSlide(3)"></button>
+        </div>
+    </div>
+</div>
+
+<div class="max-w-5xl mx-auto px-4 mt-16 mb-12 w-full text-left uppercase antialiased tracking-[0.2em]">
+    <h2 class="text-2xl font-light text-slate-800 mb-4 font-sans">@Model.Value("roomListIntro")</h2>
+    <div class="text-slate-600 font-light text-sm max-w-3xl mt-4 leading-relaxed normal-case font-sans font-light text-slate-600 text-sm leading-relaxed tracking-wide">@Model.Value("roomListDescription")</div>
+    <div class="mt-6">
+        <a href="/roomlistpage/" class="group relative inline-flex items-center gap-2 text-xs font-light uppercase pb-2 text-slate-800 font-sans">
+            <span>ĐẶT PHÒNG NGAY</span>
+            <span class="absolute bottom-0 left-0 w-0 h-[1px] bg-slate-800 transition-all duration-300 group-hover:w-full"></span>
+        </a>
+    </div>
+</div>
+
+<div class="w-full bg-[#f5f2eb] mb-20">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row">
+        <div class="w-full md:w-1/2 h-[400px] md:h-[500px]">
+            <img src="@restaurantImg" class="w-full h-full object-cover" alt="Boma Beach Club">
+        </div>
+        <div class="w-full md:w-1/2 flex items-center justify-center p-8 md:p-16">
+            <div class="max-w-md text-center md:text-left">
+                <div class="text-3xl font-light text-slate-800 mb-6 uppercase tracking-widest font-sans">@Model.Value("restaurantTitle")</div>
+                <div class="text-slate-600 font-light text-sm leading-relaxed mb-8">@Model.Value("restaurantDes")</div>
+                <a href="/restaurantpage/" class="group relative inline-flex items-center gap-2 text-xs font-light uppercase pb-2 text-slate-800 font-sans tracking-[0.2em]">
+                    <span>XEM CHI TIẾT &#10140;</span>
+                    <span class="absolute bottom-0 left-0 w-0 h-[1px] bg-slate-800 transition-all duration-300 group-hover:w-full"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="w-full relative py-20 mb-20 bg-slate-50">
+    <div class="absolute inset-0 bg-slate-200 h-1/2 top-1/4 z-0"></div>
+
+    <div class="relative z-10 bg-white shadow-xl max-w-4xl mx-auto flex flex-col md:flex-row rounded-sm overflow-hidden">
+        <div class="w-full md:w-1/2 p-10 md:p-14 flex flex-col justify-center">
+            <h2 class="text-2xl font-light text-slate-800 mb-4 uppercase tracking-[0.2em] font-sans">@Model.Value("spaTitle")</h2>
+            <p class="text-slate-600 font-light text-sm leading-relaxed mb-8">@Model.Value("spaDes")</p>
+            <a href="/spapage/" class="inline-block border border-slate-800 text-slate-800 px-6 py-3 mt-6 text-xs uppercase tracking-widest font-light hover:bg-slate-800 hover:text-white transition-colors duration-300 text-center w-max mx-auto md:mx-0">Khám Phá Spa</a>
+        </div>
+        <div class="w-full md:w-1/2 h-[350px] md:h-auto">
+            <img src="@spaImg" alt="Sensory Spa" class="w-full h-full object-cover">
+        </div>
+    </div>
+</div>
+
+<div class="max-w-5xl mx-auto px-4 mb-20">
+    <div class="text-center mb-10">
+        <h2 class="text-xl font-light text-slate-800 uppercase tracking-[0.2em] font-sans">@Model.Value("contactUS")</h2>
+        <p class="text-sm text-slate-500 font-light mt-2">&#64;@Model.Value("bomaResort")</p>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
+        <div class="aspect-square overflow-hidden group relative cursor-pointer">
+            <img src="@act1" alt="From the sky" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+            <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <span class="text-white text-2xl">&#10032;</span>
+            </div>
+        </div>
+        <div class="aspect-square overflow-hidden group relative cursor-pointer">
+            <img src="@act2" alt="View from outdoor" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+            <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <span class="text-white text-2xl">&#10032;</span>
+            </div>
+        </div>
+        <div class="aspect-square overflow-hidden group relative cursor-pointer">
+            <img src="@act3" alt="Yoga activity" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+            <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <span class="text-white text-2xl">&#10032;</span>
+            </div>
+        </div>
+        <div class="aspect-square overflow-hidden group relative cursor-pointer">
+            <img src="@act4" alt="Menu" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+            <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <span class="text-white text-2xl">&#10032;</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const track = document.getElementById('slider-track');
+        const dots = document.querySelectorAll('.dot');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const totalSlides = 4;
+        let currentSlide = 0;
+        let autoplayTimer;
+
+        function updateSlider() {
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            dots.forEach((dot, index) => {
+                if (index === currentSlide) {
+                    dot.classList.add('bg-white');
+                    dot.classList.remove('bg-white/50');
+                } else {
+                    dot.classList.remove('bg-white');
+                    dot.classList.add('bg-white/50');
+                }
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlider();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateSlider();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlider();
+            resetAutoplay();
+        }
+
+        function startAutoplay() {
+            autoplayTimer = setInterval(nextSlide, 5000);
+        }
+
+        function resetAutoplay() {
+            clearInterval(autoplayTimer);
+            startAutoplay();
+        }
+
+        prevBtn.addEventListener('click', function () {
+            prevSlide();
+            resetAutoplay();
+        });
+
+        nextBtn.addEventListener('click', function () {
+            nextSlide();
+            resetAutoplay();
+        });
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', function () {
+                goToSlide(index);
+            });
+        });
+
+        window.goToSlide = goToSlide;
+
+        startAutoplay();
+    });
+</script>

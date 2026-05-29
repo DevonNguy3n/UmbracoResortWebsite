@@ -1,0 +1,90 @@
+@using Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Web.Website.Controllers
+@using Umbraco.Controllers
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Web.Common.PublishedModels.BookingPage>
+@{
+    Layout = "master.cshtml";
+    var roomOptions = Model.Root().DescendantsOfType("roomDetail").Where(x => x.IsVisible()) ?? Enumerable.Empty<IPublishedContent>();
+}
+
+<div class="max-w-4xl mx-auto my-12 px-4" style="font-family: sans-serif;">
+    <div class="bg-white p-8 border border-slate-100 shadow-sm rounded-sm">
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-serif uppercase tracking-widest text-slate-800 mb-2">@Model.Value("title")</h1>
+            <h2 class="text-lg font-medium text-amber-800">@Model.Value("h2booking")</h2>
+            <p class="text-xs uppercase tracking-[0.2em] text-slate-400 mt-1">@Model.Value("h3booking")</p>
+        </div>
+
+        @if (TempData["BookingStatus"] != null)
+        {
+            <div class="mb-4 p-3 bg-red-50 border border-red-200 text-red-700 text-sm rounded-sm">@TempData["BookingStatus"]</div>
+        }
+        @if (TempData["BookingSuccess"] != null)
+        {
+            <div class="mb-4 p-3 bg-green-50 border border-green-200 text-green-700 text-sm rounded-sm">@TempData["BookingSuccess"]</div>
+        }
+
+        @using (Html.BeginUmbracoForm<FormSurfaceController>("HandleBooking", FormMethod.Post))
+        {
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+                <div class="md:col-span-2" style="margin-bottom: 15px;">
+                    <label class="block font-medium mb-1 text-slate-800">Họ và tên / Full Name <span class="text-red-500">*</span></label>
+                    <input type="text" name="FullName" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;" />
+                </div>
+
+                <div style="margin-bottom: 15px;">
+                    <label class="block font-medium mb-1 text-slate-800">Check In <span class="text-red-500">*</span></label>
+                    <input type="date" name="CheckIn" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;" />
+                </div>
+
+                <div style="margin-bottom: 15px;">
+                    <label class="block font-medium mb-1 text-slate-800">Check Out <span class="text-red-500">*</span></label>
+                    <input type="date" name="CheckOut" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;" />
+                </div>
+
+                <div style="margin-bottom: 15px;">
+                    <label class="block font-medium mb-1 text-slate-800">Adults <span class="text-red-500">*</span></label>
+                    <select name="Adults" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; background: white;">
+                        <option value="1">1</option>
+                        <option value="2" selected>2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                </div>
+
+                <div style="margin-bottom: 15px;">
+                    <label class="block font-medium mb-1 text-slate-800">Children <span class="text-red-500">*</span></label>
+                    <select name="Children" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; background: white;">
+                        <option value="0" selected>0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                    </select>
+                </div>
+
+                <div class="md:col-span-2" style="margin-bottom: 15px;">
+                    <label class="block font-medium mb-1 text-slate-800">Room Types <span class="text-red-500">*</span></label>
+                    <select name="RoomType" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; background: white;">
+                        @foreach (var room in roomOptions)
+                        {
+                            <option value="@room.Name">@room.Name</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="md:col-span-2" style="margin-bottom: 15px;">
+                    <label class="block font-medium mb-1 text-slate-800">Email <span class="text-red-500">*</span></label>
+                    <input type="email" name="Email" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;" />
+                </div>
+
+                <div class="md:col-span-2" style="margin-bottom: 15px;">
+                    <label class="block font-medium mb-1 text-slate-800">Message</label>
+                    <textarea name="Message" rows="4" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;"></textarea>
+                </div>
+            </div>
+
+            <button type="submit" style="width: 100%; background: #b45309; color: white; border: none; padding: 12px; font-weight: 600; text-transform: uppercase; border-radius: 4px; cursor: pointer; margin-top: 20px;">
+                ĐẶT PHÒNG NGAY
+            </button>
+        }
+    </div>
+</div>
